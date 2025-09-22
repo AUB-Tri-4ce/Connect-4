@@ -4,7 +4,7 @@
 typedef struct
 {
   char grid[6][7];
-  const Player **players;
+  const Player *players[2];
   char current_player;
 } Board;
 
@@ -15,7 +15,7 @@ typedef enum
   BOARD_STATE_TIE
 } BoardState;
 
-Board *board_new(Player players[2]);
+Board *board_new(Player *players[2]);
 
 BoardState board_state(Board *board);
 
