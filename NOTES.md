@@ -1,0 +1,3 @@
+- Improve grid performance in board
+- board_state: only check the last played move
+- add a choice function for each player (eventually for the bot)
