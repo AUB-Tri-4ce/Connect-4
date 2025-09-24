@@ -1,9 +1,12 @@
 #pragma once
 #include "player.h"
 
+#define ROWS 6
+#define COLS 7
+
 typedef struct
 {
-  char grid[6][7];
+  char grid[ROWS][COLS];
   const Player *players[2];
   char current_player;
 } Board;
