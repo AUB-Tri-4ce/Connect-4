@@ -24,6 +24,10 @@ const Player *board_get_current_player(Board *board) {
   return board->players[board->current_player];
 }
 
+char board_is_move_valid(Board *board, char column) {
+  return board->grid[0][column] == '.';
+}
+
 // maybe use bool to return is the move is allowed
 char board_play(Board *board, char column);
 
