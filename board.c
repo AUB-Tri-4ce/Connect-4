@@ -43,6 +43,9 @@ char board_play(Board *board, char column) {
     }
   }
   board_print(board);
+const Player *board_get_winner(Board *board) {
+  return board->players[board->winner];
+}
 
   if(board->current_player==0)
     board->current_player = 1;
