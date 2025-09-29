@@ -1,6 +1,8 @@
 #include "board.h"
 #include "player.h"
+#include <ctype.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 int main(int argc, char *argv[]) {
   char A_name[64];
@@ -20,30 +22,40 @@ int main(int argc, char *argv[]) {
   Player *players[2] = {A, B};
 
   Board *board = board_new(players);
-  // check if board is null
+  if (board == NULL) {
+    printf("Unable to allocate board.");
+    return EXIT_FAILURE;
+  }
 
   board_print(board);
 
   BoardState state;
 
   do {
-    char column;
+    int col;
     do {
-      printf("Player %s enter your move: \n",
-             board_get_current_player(board)->name);
-      scanf("%c", &column);
+      printf("Enter a single digit (0–9): ");
 
-    } while (
-        !board_is_move_valid(board, column)); // 0 means the move was invalid
-    state = board_play(board, column);
+      int ch = getchar();
+
+      while (getchar() != '\n')
+        ;
+
+      col = ch - '0';
+
+    } while (!board_is_move_valid(board, col));
+
+    state = board_play(board, col);
+    printf("\n");
     board_print(board);
   } while (state == BOARD_STATE_ONGOING);
 
+  printf("\n");
   if (state == BOARD_STATE_TIE) {
-    // print tie
+    printf("It's a tie.\n");
   } else if (state == BOARD_STATE_WIN) {
     const Player *winner = board_get_winner(board);
-    // print winner
+    printf("The winner is 🥁🥁🥁 %s\n", winner->name);
   }
 
   board_free(board);
