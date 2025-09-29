@@ -1,16 +1,14 @@
 #include "player.h"
+#include <ctype.h>
+#include <stdlib.h>
 
-Player *player_new(char name[])
-{
+Player *player_new(char name[], char initial) {
   Player *player = malloc(sizeof(Player));
 
   player->name = name;
-  player->initial = name[0];
+  player->initial = initial;
 
   return player;
 }
 
-void player_free(Player *player)
-{
-  free(player);
-}
+void player_free(Player *player) { free(player); }

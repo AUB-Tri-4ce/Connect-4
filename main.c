@@ -3,8 +3,20 @@
 #include <stdio.h>
 
 int main(int argc, char *argv[]) {
-  Player *A = player_new("Name 1");
-  Player *B = player_new("Name 2");
+  char A_name[64];
+  char B_name[64];
+
+  printf("Player 1, input your name: ");
+  scanf("%63s", A_name);
+  printf("Player 2, input your name: ");
+  scanf("%63s", B_name);
+
+  char is_same_initial = A_name[0] == B_name[0];
+
+  Player *A =
+      player_new(A_name, is_same_initial ? toupper(A_name[0]) : A_name[0]);
+  Player *B =
+      player_new(B_name, is_same_initial ? tolower(B_name[0]) : B_name[0]);
   Player *players[2] = {A, B};
 
   Board *board = board_new(players);
