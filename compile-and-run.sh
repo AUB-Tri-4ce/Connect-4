@@ -1,1 +1,0 @@
-gcc main.c player.c -o main.out
