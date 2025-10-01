@@ -1,5 +1,4 @@
 #include "player.h"
-#include <ctype.h>
 #include <stdlib.h>
 
 Player *player_new(char name[], char initial) {
