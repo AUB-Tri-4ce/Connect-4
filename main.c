@@ -32,27 +32,29 @@ int main(int argc, char *argv[]) {
   BoardState state;
 
   do {
-    
     int col;
+
     while (1) {
-    printf("Enter a digit (0-6): ");
+      printf("Enter a digit (0-6): ");
 
-    int n = scanf("%d", &col);
-    int c;
+      int n = scanf("%d", &col);
 
-    while ((c = getchar()) != '\n' && c != EOF) {}
+      int c;
+      while ((c = getchar()) != '\n' && c != EOF) {
+      }
 
-    if (n != 1) {
+      if (n != 1) {
         printf("Invalid input. Please enter a number.\n");
         continue;
-    }
-   
-    if (!board_is_move_valid(board, col)) {
+      }
+
+      if (!board_is_move_valid(board, col)) {
         printf("Invalid move. Please try again.\n");
         continue;
+      }
+      break;
     }
-    break;
-}
+
     state = board_play(board, col);
     printf("\n");
     board_print(board);
