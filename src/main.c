@@ -75,4 +75,7 @@ int main(int argc, char *argv[]) {
   board_free(board);
   player_free(A);
   player_free(B);
+
+  printf("\nPress any key to exit...\n");
+  getchar();
 }
