@@ -6,6 +6,7 @@
 
 int main(int argc, char *argv[]) {
   setvbuf(stdout, NULL, _IONBF, 0);
+  printf("\033[H\033[J");
 
   char A_name[64];
   char B_name[64];
