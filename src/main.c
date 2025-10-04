@@ -68,7 +68,7 @@ int main(int argc, char *argv[]) {
     printf("It's a tie.\n");
   } else if (state == BOARD_STATE_WIN) {
     const Player *winner = board_get_winner(board);
-    printf("The winner is 🥁🥁🥁 %s\n", winner->name);
+    printf("The winner is %s!\n", winner->name);
   }
 
   board_free(board);
