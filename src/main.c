@@ -5,6 +5,8 @@
 #include <stdlib.h>
 
 int main(int argc, char *argv[]) {
+  setvbuf(stdout, NULL, _IONBF, 0);
+
   char A_name[64];
   char B_name[64];
 
