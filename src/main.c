@@ -35,7 +35,8 @@ int main(int argc, char *argv[]) {
     int col;
 
     while (1) {
-      printf("Enter a digit (0-6): ");
+      printf("%s, enter a column (0-6): ",
+             board_get_current_player(board)->name);
 
       int n = scanf("%d", &col);
 
