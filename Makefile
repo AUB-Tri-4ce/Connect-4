@@ -2,7 +2,7 @@ SOURCES = src/main.c src/board.c src/player.c
 OBJECTS = $(SOURCES:.c=.o)
 
 CC = gcc
-CFLAGS = -Wall -c
+CFLAGS = -Wall -Wno-char-subscripts -c
 LFLAGS = -o
 OUTPUT = main.out
 
