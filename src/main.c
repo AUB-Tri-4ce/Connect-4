@@ -94,8 +94,7 @@ int main(int argc, char *argv[]) {
     return EXIT_FAILURE;
   }
 
-  if (players[0]->type != PLAYER_HUMAN)
-    board_print(board);
+  board_print(board);
 
   BoardState state;
 
@@ -106,9 +105,6 @@ int main(int argc, char *argv[]) {
 
     switch (current_player->type) {
     case PLAYER_HUMAN:
-      board_print(board);
-      printf("\n");
-
       read_human_input(board, &col);
       break;
 
@@ -126,11 +122,10 @@ int main(int argc, char *argv[]) {
     }
 
     state = board_play(board, col);
-  } while (state == BOARD_STATE_ONGOING);
 
-  printf("\n");
-  board_print(board);
-  printf("\n");
+    board_print(board);
+    printf("\n");
+  } while (state == BOARD_STATE_ONGOING);
 
   if (state == BOARD_STATE_TIE) {
     printf("It's a tie.\n");
@@ -143,6 +138,6 @@ int main(int argc, char *argv[]) {
   player_free(A);
   player_free(B);
 
-  printf("\nPress any key to exit...\n");
+  printf("Press any key to exit...\n");
   getchar();
 }
