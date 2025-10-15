@@ -1,4 +1,4 @@
-SOURCES = src/main.c src/board.c src/player.c
+SOURCES = src/main.c src/board.c src/player.c src/bot.c
 OBJECTS = $(SOURCES:.c=.o)
 
 CC = gcc
