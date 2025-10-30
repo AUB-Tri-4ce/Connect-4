@@ -79,7 +79,6 @@ char board_is_move_valid(Board *board, char column) {
   return board->grid[0][column] == '.';
 }
 
-// maybe use bool to return is the move is allowed
 BoardState board_play(Board *board, char column) {
   const Player *curr_player = board_get_current_player(board);
 
@@ -94,16 +93,30 @@ BoardState board_play(Board *board, char column) {
 
   if (board_is_winning_move(board, column)) {
     board->winner = curr_player;
-    return BOARD_STATE_WIN;
+    board->current_state = BOARD_STATE_WIN;
   } else if (board_is_tie(board)) {
-    return BOARD_STATE_TIE;
+    board->current_state = BOARD_STATE_TIE;
+  } else {
+    board->current_state = BOARD_STATE_ONGOING;
+  }
+
+  board->current_player = 1 - board->current_player;
+
+  return board->current_state;
+}
+
+void board_undo(Board *board, char column) {
+  for (int row = 0; row < ROWS; row++) {
+    if (board->grid[row][column] != '.') {
+      board->grid[row][column] = '.';
+      break;
+    }
   }
 
   if (board->current_player == 0)
     board->current_player = 1;
   else
     board->current_player = 0;
-  return BOARD_STATE_ONGOING;
 }
 
 char board_is_tie(Board *board) {

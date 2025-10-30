@@ -113,11 +113,11 @@ int main(int argc, char *argv[]) {
       break;
 
     case PLAYER_BOT_MODERATE:
-      col = bot_play_easy(board);
+      col = bot_play_moderate(board);
       break;
 
     case PLAYER_BOT_HARD:
-      col = bot_play_easy(board);
+      col = bot_play_moderate(board);
       break;
     }
 
