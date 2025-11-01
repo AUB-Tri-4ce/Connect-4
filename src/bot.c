@@ -70,7 +70,9 @@ char bot_play_moderate(Board *board) {
       int score = minimax(board, 7, 0, bot_player);
       board_undo(board, col);
 
-      if (score > best_score) {
+      if (score > best_score ||
+          (score == best_score &&
+           abs((COLS / 2) - col) < ((COLS / 2) - best_col))) {
         best_score = score;
         best_col = col;
       }
