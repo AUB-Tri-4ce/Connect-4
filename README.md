@@ -38,6 +38,23 @@ make # to compile
 
 ./main.out # to run
 ```
+
+## Bot Complexity
+
+### Easy Bot (Sprint 2)
+The easy bot chooses a random valid column. This requires no search or evaluation.
+Time Complexity: O(1)
+
+### Medium Bot (Sprint 3)
+The medium bot uses a minimax search algorithm with a fixed depth.
+Branching factor in Connect 4 = 7 possible moves per turn.
+Time Complexity: O(7^d)  (in our implementation: depth = 7, so worst case O(7^7))
+
+### 🚧 Hard Bot (Sprint 4) 🚧
+Under Construction.
+Will include optimization and pruning to reduce the explored search space.
+
+
 ## Setup on Alpine Linux
 1. Download the Apline Linux ISO.
 2. Create a virtual machine using this ISO.
