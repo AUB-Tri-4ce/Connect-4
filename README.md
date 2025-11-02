@@ -7,6 +7,7 @@
 - [Demo](#demo)
 - [Requirements](#requirements)
 - [Usage](#usage)
+- [Bot Complexity](#bot-complexity)
 - [Setup on Alpine Linux](#setup-on-alpine-linux)
 - [License](#license)
 
@@ -43,12 +44,14 @@ make # to compile
 
 ### Easy Bot (Sprint 2)
 The easy bot chooses a random valid column. This requires no search or evaluation.
-Time Complexity: O(1)
+
+Time Complexity: $O(1)$
 
 ### Medium Bot (Sprint 3)
 The medium bot uses a minimax search algorithm with a fixed depth.
-Branching factor in Connect 4 = 7 possible moves per turn.
-Time Complexity: O(7^d)  (in our implementation: depth = 7, so worst case O(7^7))
+The branching factor in Connect 4 is 7 since we have a maximum of 7 possible moves per turn.
+
+Time Complexity: $O(7^{\mathit{depth}})$. In our implementation, $\mathit{depth} = 7$, so the worst case is $O(7^7)$.
 
 ### 🚧 Hard Bot (Sprint 4) 🚧
 Under Construction.
