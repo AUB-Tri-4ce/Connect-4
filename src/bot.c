@@ -82,6 +82,21 @@ char bot_play_moderate(Board *board) {
   return best_col;
 }
 
+static int cols_order[COLS] = {};
+
+void generate_cols_order() {
+  int mid = COLS / 2;
+  int k = 0;
+
+  cols_order[k++] = mid;
+  for (int i = 1; i <= mid; i++) {
+    if (mid + i < COLS)
+      cols_order[k++] = mid + i;
+    if (mid - i >= 0)
+      cols_order[k++] = mid - i;
+  }
+}
+
 int hard_minimax(Board *board, int depth, int alpha, int beta,
                  char is_maximizing_player, const Player *maximizing_player) {
 
@@ -102,7 +117,9 @@ int hard_minimax(Board *board, int depth, int alpha, int beta,
 
   if (is_maximizing_player) {
     int value = INT_MIN;
-    for (int col = 0; col < COLS; col++) {
+    for (int col_index = 0; col_index < COLS; col_index++) {
+      int col = cols_order[col_index];
+
       if (board_is_move_valid(board, col)) {
         board_play(board, col);
         int m =
@@ -121,7 +138,9 @@ int hard_minimax(Board *board, int depth, int alpha, int beta,
     return value;
   } else {
     int value = INT_MAX;
-    for (int col = 0; col < COLS; col++) {
+    for (int col_index = 0; col_index < COLS; col_index++) {
+      int col = cols_order[col_index];
+
       if (board_is_move_valid(board, col)) {
         board_play(board, col);
         int m =
@@ -141,15 +160,20 @@ int hard_minimax(Board *board, int depth, int alpha, int beta,
   }
 }
 
-#define MAX_DEPTH 10
+#define MAX_DEPTH 11
 
 char bot_play_hard(Board *board) {
+  if (cols_order[0] == 0) {
+    generate_cols_order();
+  }
+
   int best_score = INT_MIN;
   int best_col = -1;
 
   const Player *bot_player = board_get_current_player(board);
 
-  for (int col = 0; col < COLS; col++) {
+  for (int col_index = 0; col_index < COLS; col_index++) {
+    int col = cols_order[col_index];
     if (board_is_move_valid(board, col)) {
       board_play(board, col);
       int score =
