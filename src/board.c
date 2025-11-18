@@ -117,6 +117,8 @@ void board_undo(Board *board, char column) {
     board->current_player = 1;
   else
     board->current_player = 0;
+
+  board->winner = NULL;
 }
 
 char board_is_tie(Board *board) {

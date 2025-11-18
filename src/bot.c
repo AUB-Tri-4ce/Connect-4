@@ -2,7 +2,6 @@
 #include "board.h"
 #include "player.h"
 #include <limits.h>
-#include <stdio.h>
 #include <stdlib.h>
 
 char bot_play_easy(Board *board) {
@@ -113,7 +112,6 @@ int hard_minimax(Board *board, int depth, int alpha, int beta,
 
         if (value >= beta) {
           board_undo(board, col);
-          printf("pruning\n");
           break;
         };
         alpha = alpha > value ? alpha : value;
@@ -133,7 +131,6 @@ int hard_minimax(Board *board, int depth, int alpha, int beta,
 
         if (value <= alpha) {
           board_undo(board, col);
-          printf("pruning\n");
           break;
         };
         beta = beta < value ? beta : value;
@@ -144,21 +141,25 @@ int hard_minimax(Board *board, int depth, int alpha, int beta,
   }
 }
 
+#define MAX_DEPTH 10
+
 char bot_play_hard(Board *board) {
   int best_score = INT_MIN;
-  int best_col = 0;
+  int best_col = -1;
 
   const Player *bot_player = board_get_current_player(board);
 
   for (int col = 0; col < COLS; col++) {
     if (board_is_move_valid(board, col)) {
       board_play(board, col);
-      int score = hard_minimax(board, 7, INT_MIN, INT_MAX, 0, bot_player);
+      int score =
+          hard_minimax(board, MAX_DEPTH, INT_MIN, INT_MAX, 0, bot_player);
       board_undo(board, col);
 
       if (score > best_score ||
           (score == best_score &&
-           abs((COLS / 2) - col) < ((COLS / 2) - best_col))) {
+           (best_col == -1 ||
+            abs((COLS / 2) - col) < abs((COLS / 2) - best_col)))) {
         best_score = score;
         best_col = col;
       }

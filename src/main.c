@@ -117,7 +117,7 @@ int main(int argc, char *argv[]) {
       break;
 
     case PLAYER_BOT_HARD:
-      col = bot_play_moderate(board);
+      col = bot_play_hard(board);
       break;
     }
 
