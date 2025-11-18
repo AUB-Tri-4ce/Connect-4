@@ -67,7 +67,7 @@ char bot_play_moderate(Board *board) {
   for (int col = 0; col < COLS; col++) {
     if (board_is_move_valid(board, col)) {
       board_play(board, col);
-      int score = moderate_minimax(board, 7, 0, bot_player);
+      int score = moderate_minimax(board, 1, 0, bot_player);
       board_undo(board, col);
 
       if (score > best_score ||
