@@ -2,8 +2,8 @@ SOURCES = src/main.c src/board.c src/player.c src/bot.c
 OBJECTS = $(SOURCES:.c=.o)
 
 CC = gcc
-CFLAGS = -Wall -Wno-char-subscripts -c
-LFLAGS = -o
+CFLAGS = -fopenmp -Wall -Wno-char-subscripts -c
+LFLAGS = -fopenmp -o
 OUTPUT = main.out
 
 $(OUTPUT): $(OBJECTS)

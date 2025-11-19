@@ -36,4 +36,6 @@ const Player *board_get_winner(Board *board);
 
 void board_print(Board *board);
 
+void board_copy(Board *source, Board **destination);
+
 void board_free(Board *board);

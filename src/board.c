@@ -1,6 +1,7 @@
 #include "board.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 Board *board_new(Player *players[2]) {
   Board *board = malloc(sizeof(Board)); // allocate
@@ -145,6 +146,11 @@ void board_print(Board *board) {
     printf(" \e[0;32m%d\e[0m", col);
   }
   printf("\n");
+}
+
+void board_copy(Board *source, Board **destination) {
+  *destination = malloc(sizeof(Board));
+  memcpy(*destination, source, sizeof(Board));
 }
 
 void board_free(Board *board) {
