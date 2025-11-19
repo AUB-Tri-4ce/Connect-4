@@ -13,6 +13,9 @@ Board *board_new(Player *players[2]) {
       board->grid[r][c] = '.';
     }
   }
+  for (int i = 0; i < COLS; i++) {
+    board->heights[i] = 0;
+  }
   board->players[0] = players[0];
   board->players[1] = players[1];
   board->current_player = 0; // start with player 0
@@ -84,12 +87,10 @@ BoardState board_play(Board *board, char column) {
   const Player *curr_player = board_get_current_player(board);
 
   if (board->grid[0][column] == '.') {
-    for (int row = ROWS; row >= 0; row--) {
-      if (board->grid[row][column] == '.') {
-        board->grid[row][column] = curr_player->initial;
-        break;
-      }
-    }
+    int height = board->heights[column];
+
+    board->grid[ROWS - 1 - height][column] = curr_player->initial;
+    board->heights[column]++;
   }
 
   if (board_is_winning_move(board, column)) {
@@ -110,6 +111,7 @@ void board_undo(Board *board, char column) {
   for (int row = 0; row < ROWS; row++) {
     if (board->grid[row][column] != '.') {
       board->grid[row][column] = '.';
+      board->heights[column]--;
       break;
     }
   }

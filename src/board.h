@@ -12,6 +12,7 @@ typedef enum {
 
 typedef struct {
   char grid[ROWS][COLS];
+  int heights[COLS];
   const Player *players[2];
   char current_player;
   BoardState current_state;
