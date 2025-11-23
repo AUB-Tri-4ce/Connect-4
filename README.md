@@ -53,10 +53,12 @@ The branching factor in Connect 4 is 7 since we have a maximum of 7 possible mov
 
 Time Complexity: $O(7^{\mathit{depth}})$. In our implementation, $\mathit{depth} = 7$, so the worst case is $O(7^7)$.
 
-### 🚧 Hard Bot (Sprint 4) 🚧
-Under Construction.
-Will include optimization and pruning to reduce the explored search space.
+### Hard Bot (Sprint 4)
+The Hard bot still uses the minimax algorithm, with some performance improvements.
+1. Alpha-Beta pruning
+2. Multithreading
 
+Time Complexity: $O(7^{\mathit{depth} / 2})$. For the hard bot, $\mathit{depth} = 12$, so the worst case is $O(7^6)$.
 
 ## Setup on Alpine Linux
 1. Download the Apline Linux ISO.
